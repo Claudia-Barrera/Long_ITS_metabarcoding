@@ -42,7 +42,7 @@ We tested the pipeline with the Unite database as described below. A [DB_folder]
 - Do not forget to run snakemake using the `--use-conda` flag. Otherwise, the environments will not be created.
 - Be sure that you have enough storage space in the folder provided with your data. All the outputs will be created in the same path. 
 - Modify the parameters in the [config.yaml](/config.yaml) file, when needed.
-- __*Please use the trial run below as guidance on how to use the pipeline.*__
+- Please use the [trial run](#Trial run) below as guidance on how to use the pipeline. ⚠
 
 ### 1. Input data
 This pipeline was designed to use demultiplexed data as an input. We suggest to use [Dorado](https://github.com/nanoporetech/dorado) and [Guppy](https://nanoporetech.com/document/Guppy-protocol#guppy-software-overview) to perform the basecalling and demultiplexing process. In case of questions, please use this [guide](https://github.com/Claudia-Barrera/Nanopore_16S) as a reference. Once demultiplexed your sequenced should be organized in individual folders per barcode named as `barcode*` and compiled in a main folder. Please set the path to the main folder in the [config.yaml](/config.yaml) file using the **datadir** parameter.
@@ -122,7 +122,37 @@ For Emu, you will get a `rel-abundance.tsv` file with the relative abundance of 
 For vsearch, an additional `06_Clustering` folder will be created containing the abundance results in the `otutab.txt`file and the representative sequence per OTU in the `representative_seq.fasta` file. A `taxonomy_euk/fungi.txt` file will be available in the `07_Classification` folder. 
 
 ## Trial run
-Once installed conda, snakemake and osf, clone the repository 
+Once installed conda, snakemake and osf, download the repository directly from Github (Download ZIP) or with CLI. Then, move he file to a folder of your choice and unzip it:
+```bash
+wget https://github.com/Claudia-Barrera/Long_ITS_metabarcoding/archive/master.zip
+mv master.zip my_directory/master.zip
+unzip my_directory/master.zip
+```
+Change the parameters in the [config.yaml](/config.yaml) file accordign to your needs. For running the `Example` use the full path to the repository. For example, for a Windows system, this should look like this:
+```
+datadir: "/mnt/c/my_user/my_directory/Long_ITS_metabarcoding-master/Example"
+```
+Change to the directory of the repository, if not there yet, activate snakemake and perform a dry-run to ensure that the pipeline is working:
+```bash
+cd my_directory/Long_ITS_metabarcoding-master
+conda activate snakemake
+snakemake -n
+```
+Run the pipeline:
+```bash
+# Run snakemake with 1 core
+snakemake --use-conda -c 1
+```
+At this point the example witht the default parameters should run without interruptions. Remember that running the first time could take sometime since all the environments should be created. If the process aborts wihtout finishing, run snakemake again using the `--rerun-incomplete` flag. It will be resumed where it stoped. 
+```bash
+snakemake --use-conda -c 1 --rerun-incomplete
+```
+If you want to run the pipeline until a defined step, use the next command:
+```bash
+snakemake --use-conda -c 1 --until name_of_the_rule
+```
+
+
 
 
 
