@@ -42,7 +42,7 @@ We tested the pipeline with the Unite database as described below. A [DB_folder]
 - Do not forget to run snakemake using the `--use-conda` flag. Otherwise, the environments will not be created.
 - Be sure that you have enough storage space in the folder provided with your data. All the outputs will be created in the same path. 
 - Modify the parameters in the [config.yaml](/config.yaml) file, when needed.
-- Please use the [trial run](#Trial run) below as guidance on how to use the pipeline. ⚠
+- Please use the [Trial run](#trial-run) below as guidance on how to use the pipeline. ⚠
 
 ### 1. Input data
 This pipeline was designed to use demultiplexed data as an input. We suggest to use [Dorado](https://github.com/nanoporetech/dorado) and [Guppy](https://nanoporetech.com/document/Guppy-protocol#guppy-software-overview) to perform the basecalling and demultiplexing process. In case of questions, please use this [guide](https://github.com/Claudia-Barrera/Nanopore_16S) as a reference. Once demultiplexed your sequenced should be organized in individual folders per barcode named as `barcode*` and compiled in a main folder. Please set the path to the main folder in the [config.yaml](/config.yaml) file using the **datadir** parameter.
