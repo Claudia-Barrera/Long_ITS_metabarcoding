@@ -4,4 +4,5 @@ channels:
 - base
 - bioconda
 dependencies:
+- hmmer=3.4
 - itsx=1.1.3
