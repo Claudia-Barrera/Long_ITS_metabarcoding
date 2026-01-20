@@ -39,7 +39,7 @@ We tested the pipeline with the Unite database as described below. A [DB_folder]
 
 ### Before starting
 - Test the correct installation of the dependencies and environements using the [Example](/Example/) data. Indicate the path of the [Example](/Example/) folder in the **datadir** parameter of the [config.yaml](/config.yaml) file.
-- Do not forget to run snakemake using the `--use-conda` flag. Otherwise, the environments will not be created.
+- Do not forget to run snakemake using the `--use-conda`. Otherwise, the environments will not be created.
 - Be sure that you have enough storage space in the folder provided with your data. All the outputs will be created in the same path. 
 - Modify the parameters in the [config.yaml](/config.yaml) file, when needed.
 - Please use the [Trial run](#trial-run) below as guidance on how to use the pipeline. ⚠
@@ -141,7 +141,7 @@ snakemake -n
 Run the pipeline:
 ```bash
 # Run snakemake with 1 core
-snakemake --use-conda -c 1
+snakemake --use-conda --conda-prefix  -c 1
 ```
 At this point the example witht the default parameters should run without interruptions. Remember that running the first time could take sometime since all the environments should be created. If the process aborts wihtout finishing, run snakemake again using the `--rerun-incomplete` flag. It will be resumed where it stoped. 
 ```bash
@@ -151,7 +151,10 @@ If you want to run the pipeline until a defined step, use the next command:
 ```bash
 snakemake --use-conda -c 1 --until name_of_the_rule
 ```
-
+Finally, we suggest to include the `--conda-prefix [DIR]` flag everytime you want to reinitiate the pipeline. This will point to the base directory in which all conda environments are stored avoiding to created a new environemt each time. By default you can find the `[DIR]` to the conda environemt on your working directory:
+```bash
+snakemake --use-conda --conda-prefix ./.snakemake -c 1
+```
 
 
 
