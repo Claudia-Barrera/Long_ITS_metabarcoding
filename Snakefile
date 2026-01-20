@@ -93,7 +93,7 @@ rule quality_Control2:
     conda:
         f"{ENVS}/nanoplot.yaml"
     script:
-        f"{SCRIPTS}/Quality_Control2.sh"
+        f"{SCRIPTS}/Quality_control2.sh"
 
 
 
@@ -238,6 +238,7 @@ else:
 
 #db_emu_fungi=f"{DATABASE}/UNITE_EMU['fungi']",
 #db_emu_euk=f"{DATABASE}/UNITE_EMU['euk']"
+
 
 
 
