@@ -7,7 +7,7 @@ This pipeline compiles various tools for processing data from Oxford Nanopore Te
 
 ## Requirements and dependencies
 
-This pipeline was implemented in snakemake and requires conda to create the different environments. Listed here are the version of the tools we tested; however, new versions might work and should be modified in the `envs` files. he pipeline has been tested on independent installations of linux operation systems and flavours of WSL. Hardware requirements are depending on the difficulty / size of the jobs the user runs. A good start to run the pipeline with example data is 16 GB ram and 8 cores CPU, preferentially with 8 GB CUDA-compatible GPU (but not needed).
+This pipeline was implemented in snakemake and requires conda to create the different environments. Listed here are the version of the tools we tested; however, new versions might work and should be modified in the `envs` files. The pipeline has been tested on independent installations of linux operation systems and flavours of WSL. Hardware requirements are depending on the difficulty / size of the jobs the user runs. A good start to run the pipeline with example data is 16 GB ram and 8 cores CPU, preferentially with 8 GB CUDA-compatible GPU (but not needed).
 
 ### Dependencies
 
