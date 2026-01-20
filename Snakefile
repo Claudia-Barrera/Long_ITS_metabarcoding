@@ -1,8 +1,8 @@
 import os
-SNAKEFILE_DIR = os.path.dirname(os.path.realpath("Long_ITS_metabarcoding-master"))
-SCRIPTS = os.path.join(SNAKEFILE_DIR, "Long_ITS_metabarcoding-master/scripts")
-ENVS = os.path.join(SNAKEFILE_DIR, "Long_ITS_metabarcoding-master/envs")
-DB = os.path.join(SNAKEFILE_DIR, "Long_ITS_metabarcoding-master/DB_folder")
+SNAKEFILE_DIR = os.getcwd()
+SCRIPTS = os.path.join(SNAKEFILE_DIR, "scripts")
+ENVS = os.path.join(SNAKEFILE_DIR, "envs")
+DB = os.path.join(SNAKEFILE_DIR, "DB_folder")
 
 
 # load configuration
@@ -238,6 +238,7 @@ else:
 
 #db_emu_fungi=f"{DATABASE}/UNITE_EMU['fungi']",
 #db_emu_euk=f"{DATABASE}/UNITE_EMU['euk']"
+
 
 
 
