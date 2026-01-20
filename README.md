@@ -128,7 +128,7 @@ wget https://github.com/Claudia-Barrera/Long_ITS_metabarcoding/archive/master.zi
 mv master.zip my_directory/master.zip
 unzip my_directory/master.zip
 ```
-Change the parameters in the [config.yaml](/config.yaml) file accordign to your needs. For running the `Example` use the full path to the repository. For example, for WSL, this should look like this:
+Change the parameters in the [config.yaml](/config.yaml) file accordign to your needs and saved the changes. For running the `Example` use the full path to the repository. For example, for WSL, this should look like this:
 ```
 datadir: "/mnt/c/my_user/my_directory/Long_ITS_metabarcoding-master/Example"
 ```
@@ -141,7 +141,7 @@ snakemake -n
 Run the pipeline:
 ```bash
 # Run snakemake with 1 core
-snakemake --use-conda --conda-prefix  -c 1
+snakemake --use-conda -c 1
 ```
 At this point the example witht the default parameters should run without interruptions. Remember that running the first time could take sometime since all the environments should be created. If the process aborts wihtout finishing, run snakemake again using the `--rerun-incomplete` flag. It will be resumed where it stoped. 
 ```bash
