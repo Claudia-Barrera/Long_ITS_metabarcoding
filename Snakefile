@@ -1,5 +1,5 @@
 import os
-SNAKEFILE_DIR = os.path.dirname(os.path.realpath("Pipeline"))
+SNAKEFILE_DIR = os.path.dirname(os.path.realpath("Long_ITS_metabarcoding"))
 SCRIPTS = os.path.join(SNAKEFILE_DIR, "scripts")
 ENVS = os.path.join(SNAKEFILE_DIR, "envs")
 DB = os.path.join(SNAKEFILE_DIR, "DB_folder")
@@ -238,6 +238,7 @@ else:
 
 #db_emu_fungi=f"{DATABASE}/UNITE_EMU['fungi']",
 #db_emu_euk=f"{DATABASE}/UNITE_EMU['euk']"
+
 
 
 
