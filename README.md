@@ -122,39 +122,36 @@ For Emu, you will get a `rel-abundance.tsv` file with the relative abundance of 
 For vsearch, an additional `06_Clustering` folder will be created containing the abundance results in the `otutab.txt`file and the representative sequence per OTU in the `representative_seq.fasta` file. A `taxonomy_euk/fungi.txt` file will be available in the `07_Classification` folder. 
 
 ## Trial run
-Once installed conda, snakemake and osf, download the repository directly from Github (Download ZIP) or with CLI. Then, move he file to a folder of your choice and unzip it:
+Once installed conda, snakemake and osf, download the repository directly from Github (Download ZIP) or with CLI. Then, move the file to a folder of your choice and unzip it:
 ```bash
 wget https://github.com/Claudia-Barrera/Long_ITS_metabarcoding/archive/master.zip
-mv master.zip my_directory/master.zip
+mv master.zip my_directory/
 unzip my_directory/master.zip
+cd my_directory/Long_ITS_metabarcoding-master
 ```
-Change the parameters in the [config.yaml](/config.yaml) file accordign to your needs and saved the changes. For running the `Example` use the full path to the repository. For example, for WSL, this should look like this:
+For running the Example indicate the full path to the `Example`folder the [config.yaml](/config.yaml) file and use the defautl parameters. For example, for WSL, this should look like this:
 ```
 datadir: "/mnt/c/my_user/my_directory/Long_ITS_metabarcoding-master/Example"
 ```
-Change to the directory of the repository, if not there yet, activate snakemake and perform a dry-run to ensure that the pipeline is working:
+Change to the directory of the repository, activate snakemake and perform a dry-run to ensure that the pipeline is working:
 ```bash
-cd my_directory/Long_ITS_metabarcoding-master
 conda activate snakemake
 snakemake -n
 ```
-Run the pipeline:
+Then, run the pipeline: 
 ```bash
 # Run snakemake with 1 core
 snakemake --use-conda -c 1
 ```
-At this point the example witht the default parameters should run without interruptions. Remember that running the first time could take sometime since all the environments should be created. If the process aborts wihtout finishing, run snakemake again using the `--rerun-incomplete` flag. It will be resumed where it stoped. 
+At this point the example with the default parameters should run without interruptions. Remember that running the first time could take sometime since all the environments should be created. If the process aborts wihtout finishing, run snakemake again using the `--rerun-incomplete` flag. It will be resumed where it stopped. Include the `--conda-prefix [DIR]` flag everytime you want to reinitiate the pipeline. This will point to the base directory in which all conda environments are stored avoiding to created a new environment each time. You can find the `[DIR]` to the conda environemt on your working directory:  
 ```bash
-snakemake --use-conda -c 1 --rerun-incomplete
+snakemake --use-conda --conda-prefix ./.snakemake/conda -c 1 --rerun-incomplete
 ```
-If you want to run the pipeline until a defined step, use the next command:
+Finally, if you want to run the pipeline until a defined step, use the next command:
 ```bash
-snakemake --use-conda -c 1 --until name_of_the_rule
+snakemake --use-conda --conda-prefix ./.snakemake/conda -c 1 --until name_of_the_rule
 ```
-Finally, we suggest to include the `--conda-prefix [DIR]` flag everytime you want to reinitiate the pipeline. This will point to the base directory in which all conda environments are stored avoiding to created a new environemt each time. By default you can find the `[DIR]` to the conda environemt on your working directory:
-```bash
-snakemake --use-conda --conda-prefix ./.snakemake -c 1
-```
+
 
 
 
