@@ -128,7 +128,7 @@ wget https://github.com/Claudia-Barrera/Long_ITS_metabarcoding/archive/master.zi
 mv master.zip my_directory/master.zip
 unzip my_directory/master.zip
 ```
-Change the parameters in the [config.yaml](/config.yaml) file accordign to your needs. For running the `Example` use the full path to the repository. For example, for a Windows system, this should look like this:
+Change the parameters in the [config.yaml](/config.yaml) file accordign to your needs. For running the `Example` use the full path to the repository. For example, for WSL, this should look like this:
 ```
 datadir: "/mnt/c/my_user/my_directory/Long_ITS_metabarcoding-master/Example"
 ```
