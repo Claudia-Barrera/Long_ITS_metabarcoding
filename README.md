@@ -123,7 +123,7 @@ For Emu, you will get a `rel-abundance.tsv` file with the relative abundance of 
 For vsearch, an additional `06_Clustering` folder will be created containing the abundance results in the `otutab.txt`file and the representative sequence per OTU in the `representative_seq.fasta` file. A `taxonomy_euk/fungi.txt` file will be available in the `07_Classification` folder. 
 
 ## Trial run
-##### Step 1
+#### Step 1
 Install and test the dependencies:
 ```bash
 # Install snakemake
