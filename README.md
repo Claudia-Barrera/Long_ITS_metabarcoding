@@ -14,7 +14,7 @@ This pipeline was implemented in snakemake and requires conda to create the diff
 Please install these dependencies before running the pipeline
 - [Conda](https://docs.conda.io/projects/conda/en/stable/user-guide/install/windows.html) (v25.9.1)
 - [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) (v9.13.7)
-- [osfclient](https://pypi.org/project/osfclient/) (v0.0.5): `pip install osfclient`
+- [osfclient](https://pypi.org/project/osfclient/) (v0.0.5)
 
 ### Environments
 
@@ -38,11 +38,12 @@ We tested the pipeline with the Unite database as described below. A [DB_folder]
 ## Data processing
 
 ### Before starting
-- Test the correct installation of the dependencies and environements using the [Example](/Example/) data. Indicate the path of the [Example](/Example/) folder in the **datadir** parameter of the [config.yaml](/config.yaml) file.
-- Do not forget to run snakemake using the `--use-conda`. Otherwise, the environments will not be created.
-- Be sure that you have enough storage space in the folder provided with your data. All the outputs will be created in the same path. 
-- Modify the parameters in the [config.yaml](/config.yaml) file, when needed.
-- Please use the [Trial run](#trial-run) below as guidance on how to use the pipeline. ⚠
+- Be sure that you have enough storage space in the folder provided with your data. All the outputs will be created in the same path.
+- Have on mind that the installation of the environments will require a space of about 2.3 GB.
+- Please use the [Trial run](#trial-run) below as guidance on how to use the pipeline and what to expect A [Example](/Example/) data is provided for this purpose. ⚠ 
+- Do not forget to run snakemake using the `--use-conda` flag. Otherwise, the environments will not be implemented.
+- Modify the parameters in the [config.yaml](/config.yaml) file before process your own data according to your needs. Found more details about it below.
+
 
 ### 1. Input data
 This pipeline was designed to use demultiplexed data as an input. We suggest to use [Dorado](https://github.com/nanoporetech/dorado) and [Guppy](https://nanoporetech.com/document/Guppy-protocol#guppy-software-overview) to perform the basecalling and demultiplexing process. In case of questions, please use this [guide](https://github.com/Claudia-Barrera/Nanopore_16S) as a reference. Once demultiplexed your sequenced should be organized in individual folders per barcode named as `barcode*` and compiled in a main folder. Please set the path to the main folder in the [config.yaml](/config.yaml) file using the **datadir** parameter.
@@ -122,35 +123,55 @@ For Emu, you will get a `rel-abundance.tsv` file with the relative abundance of 
 For vsearch, an additional `06_Clustering` folder will be created containing the abundance results in the `otutab.txt`file and the representative sequence per OTU in the `representative_seq.fasta` file. A `taxonomy_euk/fungi.txt` file will be available in the `07_Classification` folder. 
 
 ## Trial run
-Once installed conda, snakemake and osf, download the repository directly from Github (Download ZIP) or using a CLI environment. Then, move the file to a folder of your choice and unzip it:
+##### Step 1
+Install and test the dependencies:
+```bash
+# Install snakemake
+conda create -c conda-forge -c bioconda -c nodefaults -n snakemake snakemake
+conda activate snakemake
+snakemake --help
+
+# Install osf-client
+pip install osfclient
+osf -h
+```
+#### Step 2
+Download the repository, move it to your directory of choice and decompress it:
 ```bash
 wget https://github.com/Claudia-Barrera/Long_ITS_metabarcoding/archive/master.zip
 mv master.zip my_directory/
 unzip my_directory/master.zip
-cd my_directory/Long_ITS_metabarcoding-master
 ```
-To run the Example, indicate the full path to the `Example` folder on the [config.yaml](/config.yaml) file, keep the defautl parameters and save the changes. In a WSL, this should look like this:
+#### Step 3
+Using a text editor of your choice, modify the full path to the `Example` folder on the [config.yaml](/config.yaml) file. Keep the rest of the parameters as stated and save the changes. In a WSL, your path directory should look like this:
 ```
+config.yaml
 datadir: "/mnt/c/my_user/my_directory/Long_ITS_metabarcoding-master/Example"
 ```
-Move to the directory where the repository is, otherwise snakemake will not recognize the snakefile). Then, activate snakemake and perform a dry-run to ensure that the pipeline is working. Additionally, confirm that osfclient is working:
+#### Step 4
+Move to the directory where the repository is located (otherwise snakemake will not recognize the snakefile). Then, perform a dry-run to ensure that the pipeline is working:
 ```bash
-conda activate snakemake
+cd my_directory/Long_ITS_metabarcoding-master
 snakemake -n
-osf -h
 ```
-Then, run the pipeline: 
+#### Step 5
+Run the pipeline:
 ```bash
 # Run snakemake with 1 core
 snakemake --use-conda -c 1
 ```
-At this point the example with the default parameters should run without interruptions. Remember that running the first time could take some minutes since all the environments should be created. If the process aborts wihtout finishing, run snakemake again using the `--rerun-incomplete` flag. It will be resumed where it stopped. Include the `--conda-prefix [DIR]` flag everytime you want to reinitiate the pipeline. This will point to the base directory in which all conda environments are stored avoiding to created a new environment each time. You can find the `[DIR]` to the conda environemt on your working directory:  
+At this point the example with the default parameters should run without interruptions. Remember that running the first time could take some minutes since all the environments should be created. If the process aborts wihtout finishing, run snakemake again using the `--rerun-incomplete` flag. It will be resumed where it stopped. Include the `--conda-prefix [DIR]` flag everytime you want to reinitiate the pipeline. This will point to the base directory in which all conda environments are stored avoiding to created a new environment each time. You can find the `[DIR]` in the conda environemt on your working directory:  
 ```bash
 snakemake --use-conda --conda-prefix ./.snakemake/conda -c 1 --rerun-incomplete
 ```
-Finally, if you want to run the pipeline until a defined step, use the next command:
+If you want to run the pipeline until a defined step, use the next command:
 ```bash
 snakemake --use-conda --conda-prefix ./.snakemake/conda -c 1 --until name_of_the_rule
+```
+#### Step 6
+Explore the outputs:
+```bash
+cd /Example/
 ```
 
 
