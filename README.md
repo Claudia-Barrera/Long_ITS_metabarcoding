@@ -144,7 +144,7 @@ unzip my_directory/master.zip
 ```
 #### Step 3
 Using a text editor of your choice, modify the full path to the `Example` folder on the [config.yaml](/config.yaml) file. Keep the rest of the parameters as stated and save the changes. In a WSL, your path directory should look like this:
-```
+```yaml
 config.yaml
 datadir: "/mnt/c/my_user/my_directory/Long_ITS_metabarcoding-master/Example"
 ```
