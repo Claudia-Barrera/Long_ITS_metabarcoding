@@ -42,7 +42,7 @@ We tested the pipeline with the Unite database as described below. A [DB_folder]
 - Have on mind that the installation of the environments will require a space of about 2.3 GB.
 - Please use the [Trial run](#trial-run) below as guidance on how to use the pipeline and what to expect. A [Example](/Example/) data is provided for this purpose. ⚠ 
 - Do not forget to run snakemake using the `--use-conda` flag. Otherwise, the environments will not be implemented.
-- Modify the parameters in the [config.yaml](/config.yaml) file before process your own data according to your needs. Found more details about it below.
+- Modify the parameters in the [config.yaml](/config.yaml) file before process your own data according to your needs. Found more details below.
 
 
 ### 1. Input data
